@@ -34,15 +34,20 @@ const doIt = (numPerSide = 10, slowDown = null) => {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     let current = maze.children[0].children[0];
     current.dataset.visited = true;
-    current.style.backgroundColor = "transparent";
+    current.style.backgroundColor = "#939393";
     const visitedCells = [current]; // STACK
     let totalVisited = 1;
     let directions = ["N", "S", "E", "W"];
 
     const juggernaut = () => {
+        let lastVisited = visitedCells[visitedCells.length - 2]
+        if (lastVisited) {
+            lastVisited.style.backgroundColor = "#939393";
+            lastVisited.textContent = "";
+        }
         if (totalVisited === numPerSide ** 2) {
             // FINISHED
-            current.style.backgroundColor = "transparent";
+            current.style.backgroundColor = "#939393";
             start.classList.remove("hidden");
             end.classList.remove("hidden");
             clearInterval(creator);
@@ -53,12 +58,13 @@ const doIt = (numPerSide = 10, slowDown = null) => {
             // DEAD-END, START BACKTRACKING
             directions = ["N", "S", "E", "W"];
             const previous = visitedCells.pop();
-            previous.style.backgroundColor = "transparent";
+            previous.style.backgroundColor = "#939393";
             previous.textContent = "";
             current = visitedCells[visitedCells.length - 1];
-            current.style.backgroundColor = "green";
-            return;
+            // return;
         }
+        current.style.backgroundColor = "#939393";
+        current.textContent = "";
 
         const randomIndex = Math.floor(Math.random() * directions.length);
         const direction = directions[randomIndex];
@@ -70,19 +76,19 @@ const doIt = (numPerSide = 10, slowDown = null) => {
         switch (direction) {
             case "N":
                 newY--;
-                current.textContent = "↑";
+                current.innerHTML = `<img width=${cellSize - 5} src='trump-up.gif'>`;
                 break;
             case "S":
                 newY++;
-                current.textContent = "↓";
+                current.innerHTML = `<img width=${cellSize - 5} src='trump-down.gif'>`;
                 break;
             case "E":
                 newX++;
-                current.textContent = "→";
+                current.innerHTML = `<img width=${cellSize - 5} src='trump-right.gif'>`;
                 break;
             case "W":
                 newX--;
-                current.textContent = "←";
+                current.innerHTML = `<img width=${cellSize - 5} src='trump-left.gif'>`;
                 break;
         }
 
@@ -103,8 +109,6 @@ const doIt = (numPerSide = 10, slowDown = null) => {
 
         // ABLE TO MOVE IN CURRENT DIRECTION
         const next = maze.children[newY].children[newX];
-        current.style.backgroundColor = "transparent";
-        next.style.backgroundColor = "green";
         next.dataset.visited = true;
         visitedCells.push(next);
         totalVisited++;
@@ -134,8 +138,6 @@ const doIt = (numPerSide = 10, slowDown = null) => {
                 break;
 
         }
-
-        current.textContent = "";
         current = next;
 
     } // end of juggernaut
