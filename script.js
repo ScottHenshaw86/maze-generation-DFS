@@ -1,7 +1,5 @@
 // CHANGE DELAY TO SPEED UP OR SLOW DOWN THE ANIMATION
 // FASTEST POSSIBLE = 0
-const DELAY = 0; // milliseconds
-
 const doIt = (numPerSide = 10, slowDown = null) => {
     maze.innerHTML = "";
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,7 +35,7 @@ const doIt = (numPerSide = 10, slowDown = null) => {
     let current = maze.children[0].children[0];
     current.dataset.visited = true;
     current.style.backgroundColor = "transparent";
-    const visitedCells = [current];
+    const visitedCells = [current]; // STACK
     let totalVisited = 1;
     let directions = ["N", "S", "E", "W"];
 
@@ -140,7 +138,7 @@ const doIt = (numPerSide = 10, slowDown = null) => {
         current.textContent = "";
         current = next;
 
-    }
+    } // end of juggernaut
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // ~~~~~~~~~~ SET IT OFF ~~~~~~~~~~~~
@@ -150,10 +148,11 @@ const doIt = (numPerSide = 10, slowDown = null) => {
 }
 
 generateBtn.addEventListener('click', () => {
+    if (!input.value || input.value <= 0) return;
     start.classList.add("hidden");
     end.classList.add("hidden");
     generateBtn.classList.add("hidden");
-    doIt(input.value, DELAY);
+    doIt(input.value, delay.options[delay.selectedIndex].value);
 });
 
-doIt(5, DELAY);
+doIt(5);
