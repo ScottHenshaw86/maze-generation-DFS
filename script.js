@@ -5,7 +5,7 @@ const doIt = (numPerSide = 10, slowDown = null) => {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // ~~~~~~~~~ CREATE GRID ~~~~~~~~~~~~
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    const cellSize = 750 / numPerSide + 2;
+    const cellSize = 600 / numPerSide + 4; // 2 because border-width is 2
     const lineHeight = 54.4 * numPerSide ** -1.11; // calculated in Excel
     start.style.lineHeight = lineHeight + "rem";
     end.style.lineHeight = lineHeight + "rem";
@@ -76,19 +76,19 @@ const doIt = (numPerSide = 10, slowDown = null) => {
         switch (direction) {
             case "N":
                 newY--;
-                current.innerHTML = `<img width=${cellSize - 5} src='trump-up.gif'>`;
+                current.innerHTML = `<img width=${cellSize - 8} src='trump-up.gif'>`;
                 break;
             case "S":
                 newY++;
-                current.innerHTML = `<img width=${cellSize - 5} src='trump-down.gif'>`;
+                current.innerHTML = `<img width=${cellSize - 8} src='trump-down.gif'>`;
                 break;
             case "E":
                 newX++;
-                current.innerHTML = `<img width=${cellSize - 5} src='trump-right.gif'>`;
+                current.innerHTML = `<img width=${cellSize - 8} src='trump-right.gif'>`;
                 break;
             case "W":
                 newX--;
-                current.innerHTML = `<img width=${cellSize - 5} src='trump-left.gif'>`;
+                current.innerHTML = `<img width=${cellSize - 8} src='trump-left.gif'>`;
                 break;
         }
 

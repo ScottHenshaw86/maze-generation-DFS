@@ -51,7 +51,7 @@ p {
 }
 
 #maze {
-	height: 750px;
+	height: 600px;
 }
 
 .row {
@@ -60,7 +60,7 @@ p {
 
 .col {
 	width: 50px;
-	border: 2px solid black;
+	border: 4px solid black;
 	background-color: blue;
 	margin: -2px 0 0 -2px;
 	display: flex;
