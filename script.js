@@ -40,25 +40,6 @@ const doIt = (numPerSide = 10, slowDown = null) => {
     let directions = ["N", "S", "E", "W"];
 
     const juggernaut = () => {
-        if (totalVisited === numPerSide ** 2) {
-            // FINISHED
-            current.style.backgroundColor = "transparent";
-            start.classList.remove("hidden");
-            end.classList.remove("hidden");
-            clearInterval(creator);
-            generateBtn.classList.remove("hidden");
-            return;
-        }
-        if (directions.length === 0) {
-            // DEAD-END, START BACKTRACKING
-            directions = ["N", "S", "E", "W"];
-            const previous = visitedCells.pop();
-            previous.style.backgroundColor = "transparent";
-            previous.textContent = "";
-            current = visitedCells[visitedCells.length - 1];
-            current.style.backgroundColor = "green";
-            return;
-        }
 
         const randomIndex = Math.floor(Math.random() * directions.length);
         const direction = directions[randomIndex];
